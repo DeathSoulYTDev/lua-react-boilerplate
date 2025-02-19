@@ -4,14 +4,12 @@
 ---@param action string The action you wish to target
 ---@param data any The data you wish to send along with this action
 function SendReactMessage(action, data)
-  SendNUIMessage({
-		type = action, 
-		data = data
-	})
+  SendNUIMessage({action = action, data = data})
 end
 
 RegisterNUICallback("closeBox", function(_, cb)
- 	SetNuiFocus(false, false)
+	print('closeBox called.')
+  toggleNuiFrame(false)
   cb({})
 end)
 
