@@ -29,7 +29,6 @@ export const useNuiEvent = <T = any>(
 };
 
 
-
 //end nui event
 
 // fetch nui
