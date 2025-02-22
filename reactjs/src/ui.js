@@ -14,9 +14,14 @@ export function useNuiEvent(eventName, callback) {
 }
 
 export const fetchNui = (action, data = {}) => {
-	fetch(`https://${GetParentResourceName()}/${action}`, {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(data),
+	return new Promise((resolve, reject) => {
+		fetch(`https://${GetParentResourceName()}/${action}`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		})
+			.then((response) => response.json().catch(() => null))
+			.then((data) => resolve(data))
+			.catch((error) => reject(error));
 	});
 };
