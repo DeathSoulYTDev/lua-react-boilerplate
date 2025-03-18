@@ -6,7 +6,7 @@ export default function AopDisplay({ aop }: { aop: aop }) {
         <span className="text-wrapper">
             <i className="icon fas fa-map-marked"></i> AOP:
             <span className="text-wrapper-3"
-                id="aop">{aop?.current}
+                id="aop"> {aop?.current}
             </span>
         </span>
     )

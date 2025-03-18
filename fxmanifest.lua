@@ -1,3 +1,5 @@
+-- the postal map to read from
+-- change it to whatever model you want that is in this directory
 fx_version "cerulean"
 lua54 "yes"
 games {"gta5"}
@@ -12,7 +14,6 @@ lua54 "yes"
 
 shared_scripts {
   'shared/*.lua',
-  -- "@oxmysql/lib/MySQL.lua"
   "@ox_lib/init.lua" -- uncomment if you are using ox_lib
 }
 
@@ -21,6 +22,7 @@ server_scripts {
 	'server/version.lua',
 	'server/commands.lua',
   "@oxmysql/lib/MySQL.lua",
+  'sv_postals/*.lua',
 }
 
 client_scripts {
@@ -29,6 +31,7 @@ client_scripts {
   "client/utils.lua",
 	'@PolyZone/client.lua',
 	'@PolyZone/CircleZone.lua',
+  'cl_postals/*.lua',
 }
 
 -- client_script {
@@ -38,5 +41,10 @@ client_scripts {
 
 files {
   "build/index.html",
-  "build/**/*"
+  "build/**/*",
+  "postalFiles/*",
+}
+
+server_exports {
+  'getPostalServer',
 }

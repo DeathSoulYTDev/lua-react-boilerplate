@@ -1,3 +1,4 @@
+resourceName = GetCurrentResourceName()
 QBCore = exports["qb-core"]:GetCoreObject()
 PlayerChar = {}
 PlayerJob = {}
@@ -102,9 +103,16 @@ RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
         ActivePlayers = result
     end)
     Wait(1000) 
-    SendNUIMessage({
-        action = 'showHUD',
+    -- SendNUIMessage({
+    --     action = 'showHUD',
+    -- })
+
+    SendReactMessage({
+        type = 'showHUD',
+        data = {}
     })
+
+
     TriggerEvent('chat:addSuggestion', '/setaop', 'Updates the Servers Current AOP.', {
         { name = 'aop', help = 'Updates AOP' }
     })
@@ -113,9 +121,13 @@ RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
 end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
-    SendNUIMessage({
-        action = 'hideHUD', 
+    SendReactMessage({
+        type = 'hideHUD',
+        data = {}
     })
+    -- SendNUIMessage({
+    --     action = 'hideHUD', 
+    -- })
 end)
 
 RegisterNetEvent('hud:updatePlayerCount')
@@ -200,23 +212,32 @@ while true do
             streets = { street = streetName, crossStreet = crossing },
             underWater = isUnderwater,
         }
-    })
-    -- SendNUIMessage({
-    --     action = 'loadClientHUD', 
-    --     playerServerId = xPlayerId,
-    --     activePlayers = ActivePlayers,
-    --     maxPlayers = maxPlayerSlots,
-    --     aop = CurrentAOP,
-    --     jobname = jobname,
-    --     jobgrade = jobrank,
-    --     cash = playerCash,
-    --     bank = playerBank,
-    --     heading = HUD.heading,
-    --     micActive = talking,
-    --     streets = { street = streetName, crossStreet = crossing },
-    --     underWater = isUnderwater,
-    -- })
+    });
 end
+
+Citizen.CreateThread(function() 
+    while true do
+        if cfg.Settings['postals']['enabled'] then
+            local playerPed = PlayerPedId()  -- Get the player's Ped (character)
+            local playerCoords = GetEntityCoords(playerPed)  -- Get the coordinates of the player's Ped
+            local nearest = {}
+
+            if cfg.Settings['postals']['builtIn'] then
+                nearest = exports[resourceName]:getPostalServer(playerCoords)
+            else
+                nearest = exports[cfg.Settings['postals']['resourceName']]:getPostalServer(playerCoords)
+            end
+
+            SendReactMessage({
+                type = 'updatePostal',
+                data = {
+                    postalCode = nearest?.code, 
+                    postalrange = nearest?.dist,
+                }
+            });
+        end
+    end
+end)
 
 Citizen.CreateThread(function()
     local minimap = RequestScaleformMovie("minimap")

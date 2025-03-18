@@ -1,5 +1,9 @@
 Tags = {}
 Tags.creatormode = false
 Tags.versionCheck = false
+Tags.skipLicense = false
 Tags.productid = '1707715635084nihofWVCIQBkpE'
+Tags.StoreLink = 'https://store.crypticoffical.net'
+Tags.StoreAPIRoute = '/api/v1'
+Tags.LicenseCheckTime = 360
 Tags.noKeyCrash = false

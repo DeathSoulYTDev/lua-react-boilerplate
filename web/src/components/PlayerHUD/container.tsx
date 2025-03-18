@@ -2,6 +2,8 @@ import { fetchNui, useNuiEvent } from "@utilities/utils";
 import { useState } from "react";
 import LungsDisplay from "./lungs";
 import ClientInfo from "./clientInfo";
+import MoneyDisplay from "./money";
+import JobDisplay from "./jobinfo";
 
 interface PlayerJobData {
     jobname: string;
@@ -29,12 +31,8 @@ interface PriorityData {
 }
 
 const PlayerHud: React.FC = () => {
-    const [visible, setVisible] = useState<boolean>(false); // change to true to see the UI.
-
-    // const [ServerName, setServerName] = useState<string>("")
-    // const [MaxPlayers, setMaxPlayers] = useState<number>(15)
-    // const [StartingMoney, setStartingMoney] = useState<number>(1000)
-    // const [isPvpEnabled, setIsPvpEnabled] = useState<string>('False')
+    const [visible, setVisible] = useState<boolean>(true); // change to true to see the UI.
+    
     const [logoUrl, setLogoURL] = useState<string>('');
     const [playerJob, setPlayerJob] = useState<PlayerJobData>();
     const [playerCash, setCash] = useState<string | number | undefined>(0);
@@ -47,8 +45,6 @@ const PlayerHud: React.FC = () => {
     const [maxPlayers, setMaxPlayers] = useState<number>(32);
     const [postal, setPostal] = useState<PostalData>();
     const [location, setLocation] = useState<LocationData>();
-
-    // const [priority, setPriority] = useState<>();
 
     const [micActive, setMicActive] = useState<boolean>(false);
     
@@ -161,24 +157,8 @@ const PlayerHud: React.FC = () => {
                         </div>
                     </div>
                     <div className="PLAYER-INFO">
-                        <div className="CASH-BAL">
-                            <div className="text-wrapper-6"><i className="icon fas fa-wallet"></i> <span id="cash">{playerCash}</span></div>
-                        </div>
-                        <div className="BANK-BAL">
-                            <div className="text-wrapper-6"><i className="icon fas fa-money-check-alt"></i> <span id="bank">{playerBank}</span></div>
-                        </div>
-                        <div className="PLAYER-JOB">
-                            <p className="p">
-                                <span className="text-wrapper"><i className="fa-solid fa-business-time"></i> JOB: </span>
-                                <span className="text-wrapper-3" id="jobname">{playerJob?.jobname}</span>
-                            </p>
-                        </div>
-                        <div className="JOB-RANK">
-                            <p className="p">
-                                <span className="text-wrapper"><i className="fa-solid fa-business-time"></i> RANK: </span>
-                                <span className="text-wrapper-3" id="jobrank">{playerJob?.jobrank}</span>
-                            </p>
-                        </div>
+                        <MoneyDisplay data={{ cash: playerCash!, bank: playerBank! }} />
+                        <JobDisplay data={{ name: playerJob?.jobname!, grade: playerJob?.jobrank! }} />
                     </div>
                     <img className="SERVER-BRANDING" id="LOGO"
                         src={logoUrl} />
