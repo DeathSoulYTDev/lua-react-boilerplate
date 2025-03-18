@@ -1,6 +1,5 @@
 import { fetchNui, useNuiEvent } from "@utilities/utils";
 import { useState } from "react";
-import '@components/box.scss'
 import LungsDisplay from "./lungs";
 import ClientInfo from "./clientInfo";
 
@@ -29,7 +28,7 @@ interface PriorityData {
     current: string | 'InActive';
 }
 
-export const Box: React.FC = () => {
+const PlayerHud: React.FC = () => {
     const [visible, setVisible] = useState<boolean>(false); // change to true to see the UI.
 
     // const [ServerName, setServerName] = useState<string>("")
@@ -189,3 +188,5 @@ export const Box: React.FC = () => {
         </div>
     )
 }
+
+export default PlayerHud;

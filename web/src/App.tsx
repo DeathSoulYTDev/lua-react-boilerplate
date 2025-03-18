@@ -1,10 +1,10 @@
-import { Box } from "@components/Box";
+import HUDWrapper from "@components/wrapper";
 // import 
 
 const App = () => {
 	return (
 		<>
-			<Box />
+			<HUDWrapper />
 		</>
 	);
 };
