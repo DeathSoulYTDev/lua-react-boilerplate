@@ -15,24 +15,20 @@ shared_scripts {
   -- "@oxmysql/lib/MySQL.lua"
   "@ox_lib/init.lua" -- uncomment if you are using ox_lib
 }
--- server_script {
---   "server/server.lua",
---   "@oxmysql/lib/MySQL.lua"
--- }
 
 server_scripts {
 	'server/server.lua',
 	'server/version.lua',
 	'server/commands.lua',
-  "@oxmysql/lib/MySQL.lua"
+  "@oxmysql/lib/MySQL.lua",
 }
 
 client_scripts {
 	'client/cl_main.lua',
 	'client/functions.lua',
+  "client/utils.lua",
 	'@PolyZone/client.lua',
 	'@PolyZone/CircleZone.lua',
-  "client/utils.lua"
 }
 
 -- client_script {
