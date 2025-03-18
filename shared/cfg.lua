@@ -27,7 +27,7 @@ cfg.Settings = {
         -- the prefix name of the postals json file
         -- e.g: so for OCRP postals you would change custom to say ocrp
         -- and make sure the file name constains the filePrefix and "-postals.json" after it
-        ['filePrefix'] = 'custom', 
+        ['filePrefix'] = 'new', 
         -- the command to use when settings a gps route to a postal [DONT add a slash]
         ['command'] = 'postal',
         -- How often in milliseconds the postal code is updated on each client.

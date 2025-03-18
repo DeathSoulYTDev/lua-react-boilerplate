@@ -18,11 +18,11 @@ shared_scripts {
 }
 
 server_scripts {
-	'server/server.lua',
-	'server/version.lua',
-	'server/commands.lua',
+  'server/*.lua',
+	-- 'server/server.lua',
+	-- 'server/version.lua',
+	-- 'server/commands.lua',
   "@oxmysql/lib/MySQL.lua",
-  'sv_postals/*.lua',
 }
 
 client_scripts {
@@ -33,11 +33,6 @@ client_scripts {
 	'@PolyZone/CircleZone.lua',
   'cl_postals/*.lua',
 }
-
--- client_script {
---   "client/client.lua",
---   "client/utils.lua"
--- }
 
 files {
   "build/index.html",
