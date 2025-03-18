@@ -1,0 +1,99 @@
+.progress {
+    text-align: center;
+}
+
+.progress .label {
+    position: relative;
+    top: -15px;
+    color: #db15bc;
+}
+
+.progress .shadow{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: rgba(0,0,0,0.3);
+}
+.progress svg{
+	position: absolute;
+	height: 160px;
+	width: 160px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%) rotate(-90deg);
+}
+.progress svg circle{
+	fill: transparent;
+	stroke: url(#GradientColor);
+	stroke-width: 20;
+	stroke-dasharray: 500;
+	stroke-dashoffset: 500;
+	stroke-linecap: round;
+	animation: stroke 5.5s steps(500) forwards;
+}
+.progress .counter{
+	position: absolute;
+    display: flex;
+	/* top: 51.25%; */
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 100%;
+	height: 50px;
+    line-height: 15px;
+	color: #fff;
+	text-align: center;
+    align-items: center;
+    justify-content: center;
+	overflow: hidden;
+}
+
+.progress .counter i{
+    font-size: 28px;
+}
+.progress .counter span{
+	font-size: 28px;
+	font-weight: bold;
+}
+.progress .counter span:after{
+	position: absolute;
+	white-space: pre;
+	left: 50%;
+	transform: translateX(-50%);
+	animation: animate 10s steps(100) forwards;
+}
+h2{
+	color: #fff;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 15%;
+	letter-spacing: 1px;
+}
+@keyframes animate{
+	0%{
+		top: 0%;
+	}
+	100%{
+		top: -5000px;
+	}
+}
+@keyframes stroke{
+	100%{
+		stroke-dashoffset: 0;
+	}
+}
+.progress svg .color1,
+.progress .counter .color1{
+	stroke: #ff004e;
+	color: #ff004e;
+}
+.progress svg .color2,
+.progress .counter .color2{
+	stroke: #10e100;
+	color: #10e100;
+}
+.progress svg .color3,
+.progress .counter .color3{
+	stroke: url(#GradientColor);
+	color: url(#GradientColor);
+}

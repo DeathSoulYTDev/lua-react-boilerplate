@@ -1,0 +1,177 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Inter:400");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  --color1: #db15bc;
+  --color2: #04ffed;
+  --bg-color: #19153fcc;
+  --info-display-top: 300px;
+  /* --mic-color: #db15bc; */
+}
+html,
+body {
+  /* display: ; */
+  /* visibility: hidden; */
+  overflow: hidden;
+  margin: 0px;
+  height: 100vh;
+  width: 100vw;
+  /* background-image: url(https://cdn.animaapp.com/projects/65e10b3303d67245bc6b954a/releases/65e10bc7e263004f96ba2443/img/frame-1.png); */
+  background-size: cover;
+}
+
+#container {
+  visibility: hidden;
+}
+
+/* a blue color as a generic focus style */
+a {
+  text-decoration: none;
+}
+
+.root #poverlay {
+  width: 300px;
+}
+
+#overlay {
+  position: absolute;
+  left: 1vw;
+  bottom: 300px;
+  bottom: var(--info-display-top);
+  transition: 1s;
+}
+
+#overlay .client-info {
+  position: absolute;
+  width: 257px;
+  height: 210px;
+  left: 15px;
+}
+
+#overlay .polygon {
+  position: absolute;
+  width: 20px;
+  height: 12px;
+  top: 28px;
+  left: 120px;
+}
+
+#overlay .PA-DISPLAY {
+  position: absolute;
+  width: 350px;
+  height: 30px;
+  top: 32.5px;
+  left: 0;
+  background-color: var(--bg-color);
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--color1);
+  font-weight: 25px;
+}
+
+#overlay .priority-status {
+  position: absolute;
+  width: 343px;
+  top: 4.5px;
+  left: 5px;
+  font-family: "Inter", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 14.25px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+#overlay .location-display {
+  width: 350px;
+}
+
+.MINIMAP {
+  position: absolute;
+  width: 350px;
+  height: 200px;
+  left: 2.5vw;
+  bottom: 25px;
+  border-radius: 25px;
+  border: 2px solid;
+  border-color: #ffffff;
+  background-image: url(https://cdn.animaapp.com/projects/65e10b3303d67245bc6b954a/releases/65e10bc7e263004f96ba2443/img/minimap@2x.png);
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: 1s;
+}
+
+
+/* LOCATION & POSTAL STUFF */
+.root .POSTAL {
+  position: absolute;
+  width: 170px;
+  height: 27px;
+  top: 0;
+  right: 0px;
+  background-color: var(--bg-color);
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--color1);
+}
+
+.root .n-postal-display {
+  position: absolute;
+  width: 170px;
+  top: 2.5px;
+  left: 6.5px;
+  font-family: "Inter", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 14.25px;
+  text-align: left;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.root .postal-info {
+  color: #fff;
+}
+
+.root #postal {
+  color: var(--color1);
+}
+
+.root #postalDist {
+  color: var(--color2);
+}
+
+.root .LOCATIONS {
+  position: absolute;
+  width: 150px;
+  height: 27px;
+  top: 0;
+  left: 0;
+  background-color: var(--bg-color);
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: var(--color1);
+}
+
+.root .n-location-display {
+  position: absolute;
+  width: 150px;
+  top: 4.5px;
+  left: 8.5px;
+  font-family: "Inter", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 12.5px;
+  text-align: left;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.root .text-wrapper-4 {
+  color: var(--color2)
+}

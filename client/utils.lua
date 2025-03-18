@@ -10,8 +10,8 @@ function SendReactMessage(action, data)
 	})
 end
 
-RegisterNUICallback("closeBox", function(_, cb)
- 	SetNuiFocus(false, false)
-  cb({})
-end)
+-- RegisterNUICallback("closeBox", function(_, cb)
+--  	SetNuiFocus(false, false)
+--   cb({})
+-- end)
 
