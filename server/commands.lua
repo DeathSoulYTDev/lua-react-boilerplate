@@ -14,7 +14,6 @@ AddEventHandler("rps_qbhud:RegisterSVCommands", function(licenseActive)
                     end
                 else
                     HUD.notify({ resource = cfg.Settings['notifyBy'], source = source, id = 'not_auth', title = 'System Alert', text = 'You Are Not Authorized for this Command', icon = 'ban', iconColor = '#C53030', style = 'error' })
-                    -- TriggerClientEvent('cnotify:notify', source, 'System Alert', 'You Are Not Authorized for this Command', 5000, 'error', true)
                 end
             end)
         end
