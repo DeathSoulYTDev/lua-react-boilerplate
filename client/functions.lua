@@ -113,7 +113,7 @@ HUD.notify = function(data)
             },
             icon = data.icon,
             iconColor = data.iconColor
-        });
+        })
     elseif data.resource == 'cn' then
         TriggerEvent('cnotify:notify', data.source, data.title, data.text, notifyTime, data.style, cfg.Settings['notifySounds'])
     elseif data.resource == 'rtx' then
