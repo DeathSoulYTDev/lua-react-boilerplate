@@ -93,3 +93,32 @@ HUD.getPlayerData = function()
     return PlayerChar;
 end
 
+HUD.notify = function(data) 
+    local notifyTime = cfg.Settings['notifyTime'] * 1000
+    if data.resource == 'ox' then
+        return lib.notify({
+            id = data.id,
+            title = data.title,
+            description = data.text,
+            showDuration = true,
+            duration = notifyTime,
+            position = cfg.Settings['notifyPos'],
+            type = data.style,
+            style = {
+                backgroundColor = '#141517',
+                color = '#C1C2C5',
+                ['.description'] = {
+                  color = '#909296'
+                }
+            },
+            icon = data.icon,
+            iconColor = data.iconColor
+        });
+    elseif data.resource == 'cn' then
+        TriggerEvent('cnotify:notify', data.source, data.title, data.text, notifyTime, data.style, cfg.Settings['notifySounds'])
+    elseif data.resource == 'rtx' then
+        return exports["rtx_notify"]:Notify(data.title, data.text, notifyTime, data.style)
+    else
+        return
+    end
+end

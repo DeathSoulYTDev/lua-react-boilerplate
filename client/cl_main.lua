@@ -18,12 +18,12 @@ talking = false
 isUnderwater = false
 local showCircleB = false
 local showSquareB = false
-local maxPlayerSlots = Config.Settings['maxPlayers']
+local maxPlayerSlots = cfg.Settings['maxPlayers']
 
 
 
 -- AOP --
-local CurrentAOP = Config.aopSettings['defaultAop'] 
+local CurrentAOP = cfg.aopSettings['defaultAop'] 
 
 -- Hud functions --
 HUD = {}
@@ -38,7 +38,7 @@ Heading = nil
 
 -- NUI CallBacks
 RegisterNUICallback('get_config', function(data, cb)
-    cb({ Settings = Config.Settings })
+    cb({ Settings = cfg.Settings })
 end)
 
 -- main loop when a player joins! --
@@ -48,15 +48,15 @@ Citizen.CreateThread(function()
             HUD.serverId = GetPlayerServerId(PlayerId())
         end
 
-        if(Config.prioritySettings['enabled']) then
+        if(cfg.prioritySettings['enabled']) then
             TriggerServerEvent("rps_qbhud:UPDATEDAPRIORTY");
         end
       
-        if(Config.aopSettings['enabled']) then
+        if(cfg.aopSettings['enabled']) then
             TriggerServerEvent("HUD:UPDATEDUMBAOP")
         end
       
-        if(Config.peacetimeSettings['enabled']) then
+        if(cfg.peacetimeSettings['enabled']) then
             TriggerServerEvent("rps_qbhud:UPDATEDUMBPEACETIME")
         end
     end
@@ -166,15 +166,13 @@ AddEventHandler('hud:displayAOP', function(aop)
             enabed = cfg.aopSettings['enabled'],
             aop = CurrentAOP
         }
-    })
-
-    TriggerEvent('cnotify:notify', source, 'AOP Updated', 'Current AOP: '..CurrentAOP, 5000, 'info', true)
+    });
+    HUD.notify({ resource = cfg.Settings['notifyBy'], source = source, title = 'AOP Updated', text = 'Current AOP: '..CurrentAOP, style = 'info', sound = true})
 end)
 
 RegisterNetEvent("HUD:AOPCHANGE")
 AddEventHandler("HUD:AOPCHANGE", function(aop)
     CurrentAOP = aop
-    -- TriggerEvent('cnotify:notify', source, 'AOP Updated', 'The Aop is now '..CurrentAOP, 5000, 'info', true)
 end)
 
 
@@ -253,13 +251,13 @@ Citizen.CreateThread(function()
         minimapOffset = ((defaultAspectRatio-aspectRatio)/3.6)-0.008
     end
 
-    if not Config.Settings['minimap']['useRoundMap'] then
+    if not cfg.Settings['minimap']['useRoundMap'] then
         RequestStreamedTextureDict("squaremap", false)
         if not HasStreamedTextureDictLoaded("squaremap") then
             Wait(150)
         end
-        if Config.Settings['minimap']['notifications'] then
-            TriggerEvent('cnotify:notify', source, 'System Message', 'Loading Square Map', 5000, 'info', true)
+        if cfg.Settings['minimap']['notifications'] then
+            HUD.notify({ resource = cfg.Settings['notifyBy'], source = source, id = 'map_loading', title = 'System Message', text = 'Loading Square Map', icon = 'info', iconColor = '#fff', style = 'info' })
         end
         SetMinimapClipType(0)
         AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "squaremap", "radarmasksm")
@@ -282,21 +280,21 @@ Citizen.CreateThread(function()
         SetMinimapClipType(0)
         Wait(50)
         SetRadarBigmapEnabled(false, false)
-        if Config.Settings['minimap']['mapBoarders'] then
+        if cfg.Settings['minimap']['mapBoarders'] then
             showCircleB = false
             showSquareB = true
         end
         Wait(1200)
-        if Config.Settings['minimap']['notifications'] then
-            TriggerEvent('cnotify:notify', source, 'System Message', 'Loaded Square Map', 5000, 'info', true)
+        if cfg.Settings['minimap']['notifications'] then
+            HUD.notify({ resource = cfg.Settings['notifyBy'], source = source, id = 'map_loading', title = 'System Message', text = 'Loaded Square Map', icon = 'info', iconColor = '#fff', style = 'info' })
         end
     else
         RequestStreamedTextureDict("circlemap", false)
         if not HasStreamedTextureDictLoaded("circlemap") then
             Wait(150)
         end
-        if Config.Settings['minimap']['notifications'] then
-            TriggerEvent('cnotify:notify', source, 'System Message', 'Loading Round Map', 5000, 'info', true)
+        if cfg.Settings['minimap']['notifications'] then
+            HUD.notify({ resource = cfg.Settings['notifyBy'], source = source, id = 'map_loading', title = 'System Message', text = 'Loading Round Map', icon = 'info', iconColor = '#fff', style = 'info' })
         end
         SetMinimapClipType(1)
         AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "circlemap", "radarmasksm")
@@ -319,13 +317,13 @@ Citizen.CreateThread(function()
         SetRadarBigmapEnabled(true, false)
         Wait(50)
         SetRadarBigmapEnabled(false, false)
-        if Config.Settings['minimap']['mapBoarders'] then
+        if cfg.Settings['minimap']['mapBoarders'] then
             showCircleB = true
             showSquareB = false
         end
         Wait(1200)
-        if Config.Settings['minimap']['notifications'] then
-            TriggerEvent('cnotify:notify', source, 'System Message', 'Loaded Round Map', 5000, 'info', true)
+        if cfg.Settings['minimap']['notifications'] then
+            HUD.notify({ resource = cfg.Settings['notifyBy'], source = source, id = 'map_loading', title = 'System Message', text = 'Loaded Round Map', icon = 'info', iconColor = '#fff', style = 'info' })
         end
     end
 

@@ -45,13 +45,14 @@ Citizen.CreateThread(function()
         end
 
         if pBlip and #(pBlip.p[1] - coords) < deleteDist then
-            TriggerEvent('chat:addMessage', {
-                color = { 255, 0, 0 },
-                args = {
-                    'Postals',
-                    cfg.Settings['postals']['text']['arrivedAtDest']
-                }
-            })
+            TriggerEvent('postalNotify', { id = 'arrv_dest', title = 'Destination', text = cfg.Settings['postals']['text']['arrivedAtDest'], icon = 'map-location', iconColor = '#C53030'})
+            -- TriggerEvent('chat:addMessage', {
+            --     color = { 255, 0, 0 },
+            --     args = {
+            --         'Postals',
+            --         cfg.Settings['postals']['text']['arrivedAtDest']
+            --     }
+            -- })
             RemoveBlip(pBlip.hndl)
             pBlip = nil
         end

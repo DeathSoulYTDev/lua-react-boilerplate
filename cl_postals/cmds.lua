@@ -8,6 +8,23 @@ local format = string.format
 --- [[ Nearest Postal Commands ]] ---
 ---
 
+RegisterNetEvent('postalNotify')
+AddEventHandler('postalNotify', function(source, data)
+    if cfg.Settings['postals']['notifyBy'] == 'chat' then
+        TriggerEvent('chat:addMessage', {
+            color = { 255, 0, 0 },
+            args = {
+                'Postals',
+                data.text
+            }
+        })
+    else
+        HUD.notify({ resource = cfg.Settings['notifyBy'], source = source, id = data.id, title = data.title, text = data.text, icon = data.icon, iconColor = data.iconColor })
+    -- elseif cfg.Settings['postals']['notifyBy'] == 'qb' then
+    --     return
+    end
+end)
+
 TriggerEvent('chat:addSuggestion', '/'..cfg.Settings['postals']['command'], 'Set the GPS to a specific postal',
              { { name = 'Postal Code', help = 'The postal code you would like to go to' } })
 
@@ -16,13 +33,8 @@ RegisterCommand(cfg.Settings['postals']['command'], function(_, args)
         if pBlip then
             RemoveBlip(pBlip.hndl)
             pBlip = nil
-            TriggerEvent('chat:addMessage', {
-                color = { 255, 0, 0 },
-                args = {
-                    'Postals',
-                    cfg.Settings['postals']['blip']['deleteText']
-                }
-            })
+
+            TriggerEvent('postalNotify', _, { id = 'route_deleted', title = 'Route Removed', text = cfg.Settings['postals']['blip']['deleteText'], icon = 'trash', iconColor = '#C53030'})
         end
         return
     end
@@ -49,20 +61,17 @@ RegisterCommand(cfg.Settings['postals']['command'], function(_, args)
         AddTextComponentSubstringPlayerName(format(cfg.Settings['postals']['blip']['blipText'], pBlip.p.code))
         EndTextCommandSetBlipName(blip)
 
-        TriggerEvent('chat:addMessage', {
-            color = { 255, 0, 0 },
-            args = {
-                'Postals',
-                format(cfg.Settings['postals']['blip']['drawRouteText'], foundPostal.code)
-            }
-        })
+        TriggerEvent('postalNotify', _, { id = 'new_route', title = 'Route Set', text = format(cfg.Settings['postals']['blip']['drawRouteText'], foundPostal.code), icon = 'check', iconColor = '#C53030'})
+        -- TriggerEvent('chat:addMessage', {
+        --     color = { 255, 0, 0 },
+        --     args = {
+        --         'Postals',
+        --         format(cfg.Settings['postals']['blip']['drawRouteText'], foundPostal.code)
+        --     }
+        -- })
+
+
     else
-        TriggerEvent('chat:addMessage', {
-            color = { 255, 0, 0 },
-            args = {
-                'Postals',
-                cfg.Settings['postals']['blip']['notExistText']
-            }
-        })
+        TriggerEvent('postalNotify', { id = 'invalid_postal', title = 'Invalid Postal', text = cfg.Settings['postals']['blip']['notExistText'], icon = 'ban', iconColor = '#C53030'})
     end
 end)

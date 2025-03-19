@@ -8,11 +8,17 @@ cfg.Settings = {
     
     ['maxPlayers'] = GetConvarInt('sv_maxclients', 32),
     ['VoiceCycleKey'] = GetConvar('voice_defaultCycle', 'F11'),
-    -- ['postalDisplay'] = true, -- This will enable postals display next to the street name.
+    -- The time in seconds for how long a notifications is displayed on screen
+    ['notifyTime'] = 5,
+    -- Support Notification Methods
+    -- [ChatMessage: chat, OX_LIB Notifications: ox, MORE COMING SOON!..], 
+    ['notifyBy'] = 'ox',
+    -- the locaton of where the notification will display
+    ['notifyPos'] = 'center-right',
+    -- should a sound play when a notification is received
+    ['notifySounds'] = true,
+    -- Postal System Settings
     ['postals'] = {
-        -- Support Notification Methods
-        -- [ChatMessage: chat, OX_LIB Notifications: ox, QBNotify: qb, Cryptic Notify: cn, MORE COMING SOON!..], 
-        ['notifyBy'] = 'ox',
         -- This will enable postals display on the hud 
         -- showsing your nearest postal next to the street name.
         ['enabled'] = true, 
@@ -42,12 +48,12 @@ cfg.Settings = {
             ['sprite'] = 8,
             -- The color ID to use (default is 3, light blue)
             -- https://docs.fivem.net/docs/game-references/blips/#blip-colors
-            ['color'] = 3
+            ['color'] = 3,
             -- When the player is this close (in meters) to the destination, 
             -- the blip will be removed.
             ['distToDelete'] = 100.0,
             -- The text to display in chat when a route is deleted
-            ['deleteText'] = 'Route deleted',
+            ['deleteText'] = 'Your Postal Route was deleted',
             -- The text to display in chat when drawing a new route
             ['drawRouteText'] = 'Drawing a route to %s',
             -- The text to display when a postal is not found.
